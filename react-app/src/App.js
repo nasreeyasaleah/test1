@@ -4,31 +4,31 @@ import Axios from "axios";
 
 
 function App() {
-  const [name, setName] = useState("");
-  const [gmail, setGmail] = useState("");
-  const [password, setPass] = useState(0);
+  const [fname, setName] = useState("");
+  const [lname, setLname] = useState("");
+  const [password, setPassword] = useState("");
  
   const [userList, setUserList] = useState([]);
 
   const getUser = () => {
-    Axios.get("http://localhost:3333/User").then((response) => {
+    Axios.get("http://localhost:3333/da").then((response) => {
       setUserList(response.data);
     });
   };
 
   const addUser = () => {
     Axios.post("http://localhost:3333/create", {
-      name: name,
-      gmail: gmail,
-      password: password,
+      fname: fname,
+      lname: lname,
+      password: password
       
     }).then(() => {
       setUserList([
         ...userList,
         {
-          name: name,
-          gmail: gmail,
-          password: password,
+          fname: fname,
+          lname: lname,
+          password: password
         },
       ]);
     });
@@ -40,55 +40,56 @@ function App() {
 
   return (
     <div className="App container">
-      <h1>Employees Infomation</h1>
+      <h1>Horizontal From</h1>
       <div className="information">
         <form action="">
           <div className="mb-3">
             <label className="form-label" htmlFor="name">
-              Name:
+              Username:
             </label>
             <input
               type="text"
               className="form-control"
-              placeholder="Enter name"
+              placeholder="username"
               onChange={(event) => {
                 setName(event.target.value)
               }}
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="age">Age:</label>
-            <input
-              type="number"
-              className="form-control"
-              placeholder="Enter age"
-              onChange={(event) => {
-                setGmail(event.target.value)
-              }}
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="country">Country:</label>
+            <label htmlFor="age">Email:</label>
             <input
               type="text"
               className="form-control"
-              placeholder="Enter country"
+              placeholder="Email"
               onChange={(event) => {
-                setPass(event.target.value)
+                setLname(event.target.value)
+              }}
+            />
+          </div>
+
+          <div className="mb-3">
+            <label htmlFor="age">password:</label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="password"
+              onChange={(event) => {
+                setPassword(event.target.value)
               }}
             />
           </div>
          
          
           <button onClick={addUser} class="btn btn-success">
-            Add Employee
+            Sign in
           </button>
         </form>
       </div>
       <hr />
       <div className="employees">
         <button class="btn btn-primary" onClick={getUser}>
-          Show Employees
+          Show 
         </button>
         <br />
         <br />
@@ -96,8 +97,8 @@ function App() {
           return (
             <div className="employee card">
               <div className="card-body text-left">
-                <p className="card-text">Name: {val.name}</p>
-                <p className="card-text">gmail: {val.gmail}</p>
+                <p className="card-text">Username: {val.fname}</p>
+                <p className="card-text">Email: {val.lname}</p>
                 <p className="card-text">password: {val.password}</p>
                
               </div>
