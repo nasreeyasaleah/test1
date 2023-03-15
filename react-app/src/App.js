@@ -40,7 +40,7 @@ function App() {
 
   return (
     <div className="App container">
-      <h1>Horizontal From</h1>
+      <h1>Horizontal From </h1>
       <div className="information">
         <form action="">
           <div className="mb-3">
